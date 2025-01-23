@@ -17,6 +17,7 @@
 			<property name="hibernate.connection.username" value="postgres"/><!-- Usuário do Banco de Dados -->
 			<property name="hibernate.connection.password" value="admin"/><!-- Senha do Banco de Dados -->
 			<property name="hibernate.hbm2dll.auto" value="update"/><!-- Automatizar tabelas no BD -->
+			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"></property>
 		</properties>
 	
 	</persistence-unit>
