@@ -5,10 +5,11 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
 	http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	
-	
 	<persistence-unit name="projeto-java-maven-hibernate">
-	<!-- Aqui será configurado toda a conexão com o banco,driver, declarar as classes -->
 	
+	<class>model.UsuarioPessoa</class>
+	
+	<!-- Aqui é configurado toda a conexão com o banco,driver, declarar as classes -->
 		<properties>
 			<!-- Dados de conexão com o banco -->
 			<property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/> <!-- Driver de conexão do banco -->
@@ -16,7 +17,8 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/><!-- Indicar qual a lingua que irá utilizar para conversar com esse banco de dados-->
 			<property name="hibernate.connection.username" value="postgres"/><!-- Usuário do Banco de Dados -->
 			<property name="hibernate.connection.password" value="admin"/><!-- Senha do Banco de Dados -->
-			<property name="hibernate.hbm2dll.auto" value="update"/><!-- Automatizar tabelas no BD -->
+			<property name="hibernate.hbm2ddl.auto" value="update"/><!-- Automatizar tabelas no BD -->
+			<property name="hibernate.format_sql" value="false"/>
 			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"></property>
 		</properties>
 	
