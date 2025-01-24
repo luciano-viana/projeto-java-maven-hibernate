@@ -19,4 +19,22 @@ public class DaoGeneric<E> {
 		
 	}
 	
+	
+	//Método de Consulta Tipo1
+	public E pesquisar(E entidade) {
+		
+		Object id = HibernateUtil.getPrimaryKey(entidade);
+		
+		E e = (E) entityManager.find(entidade.getClass(), id);
+		
+		return e;
+	}
+	
+	//Método de Consulta Tipo2
+		public E pesquisar(Long id, Class<E> entidade) {//Receber ID direto
+			
+			E e = (E) entityManager.find(entidade, id);
+			
+			return e;
+		}
 }
