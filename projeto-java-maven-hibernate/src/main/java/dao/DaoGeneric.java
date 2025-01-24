@@ -10,6 +10,7 @@ public class DaoGeneric<E> {
 	//Instânciar EntityManager
 	private EntityManager entityManager = HibernateUtil.geEntityManager();
 	
+	//-------------------------------------------------------------------------------------
 	//Método de Salvar
 	public void salvar(E entidade) {
 		EntityTransaction transaction = entityManager.getTransaction();
@@ -19,7 +20,7 @@ public class DaoGeneric<E> {
 		
 	}
 	
-	
+	//-------------------------------------------------------------------------------------
 	//Método de Consulta Tipo1
 	public E pesquisar(E entidade) {
 		
@@ -31,10 +32,58 @@ public class DaoGeneric<E> {
 	}
 	
 	//Método de Consulta Tipo2
-		public E pesquisar(Long id, Class<E> entidade) {//Receber ID direto
+	public E pesquisar(Long id, Class<E> entidade) {//Receber ID direto
 			
-			E e = (E) entityManager.find(entidade, id);
+		E e = (E) entityManager.find(entidade, id);
 			
-			return e;
-		}
+		return e;
+	}
+		
+	//-------------------------------------------------------------------------------------
+	//Método de Update "Atualizar"
+	public E updateMerge(E entidade) {//salva ou atualiza
+			EntityTransaction transaction = entityManager.getTransaction();
+			transaction.begin();
+			E entidadeSalva = entityManager.merge(entidade);
+			transaction.commit();//Salvar no banco de dados
+			
+			return entidadeSalva;
+	
+   }
+
+   //-------------------------------------------------------------------------------------
+   //Método de Delete "Excluir"
+   public void deletarPorID(E entidade) {
+	   
+	   Object id = HibernateUtil.getPrimaryKey(entidade);
+	   
+	   EntityTransaction transaction = entityManager.getTransaction();
+	   transaction.begin();
+	   
+	   entityManager.createNativeQuery(
+			   "delete from " + entidade.getClass().getSimpleName().toLowerCase() + 
+			   " where id = " + id).executeUpdate(); // faz delete
+	   transaction.commit();// grava alteração no banco
+	   
+   }
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

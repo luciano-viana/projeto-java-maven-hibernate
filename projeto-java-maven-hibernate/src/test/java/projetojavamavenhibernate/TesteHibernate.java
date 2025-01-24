@@ -7,7 +7,7 @@ import model.UsuarioPessoa;
 
 public class TesteHibernate {
 	
-	
+	//-------------------------------------------------------------------------------------
 	//Método Salvar
 	@Test
 	public void testeHibernateUtil() {
@@ -28,6 +28,7 @@ public class TesteHibernate {
 		
 	}
 	
+	//-------------------------------------------------------------------------------------
 	//Método Buscar Tipo1 "Consultar"
 	@Test
 	public void testeBuscar() {
@@ -42,14 +43,60 @@ public class TesteHibernate {
 	
 	
 	//Método Buscar Tipo2 "Consultar"
-		@Test
-		public void testeBuscar2() {
-			DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	@Test
+	public void testeBuscar2() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 			
-			UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
 			
-			System.out.println(pessoa);
-		}
-	
+		System.out.println(pessoa);
+	}
+		
+	//-------------------------------------------------------------------------------------
+	//Método de Update "Atualizar"
+	@Test
+	public void testeUpdate() {
+		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+			
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+		
+		pessoa.setIdade(50);
+		pessoa.setNome("Nome atualizado Hibernete");
+		
+		pessoa = daoGeneric.updateMerge(pessoa);
+			
+		System.out.println(pessoa);
+	}
+		
+	//-------------------------------------------------------------------------------------
+   //Método de Delete "Excluir"
+   @Test
+   public void testeDelete() {
+	    DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+			
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(15L, UsuarioPessoa.class);
+		
+		daoGeneric.deletarPorID(pessoa);
+			
+		System.out.println(pessoa);
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
