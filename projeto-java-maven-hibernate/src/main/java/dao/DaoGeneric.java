@@ -82,7 +82,11 @@ public class DaoGeneric<E> {
 	   return lista;
    }
    
-   
+   //-------------------------------------------------------------------------------------
+   //Entity Manager dentro do Dao para acessar em outras partes do projeto
+   public EntityManager getEntityManager() {
+	return entityManager;
+   }
    
    
 }

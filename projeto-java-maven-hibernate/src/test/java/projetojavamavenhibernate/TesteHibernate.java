@@ -97,6 +97,21 @@ public class TesteHibernate {
 
 		}
 	}
+   
+   //-------------------------------------------------------------------------------------
+   // Método para consultar com condições sem precisar criar métodos no DaoGeneric
+   @Test
+   public void testeQueryList() {
+	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>(); 
+	   List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery
+			   ("from UsuarioPessoa where id = 20").getResultList();
+	   
+	   for (UsuarioPessoa usuarioPessoa : list) {
+		System.out.println(usuarioPessoa);
+	}
+	   
+   }
+   
 }
 
 
