@@ -112,6 +112,23 @@ public class TesteHibernate {
 	   
    }
    
+   //-------------------------------------------------------------------------------------
+   // Método para consultar com ordenação dos dados e com limite máximo de resultados
+   @Test
+   public void testeQueryListMaxResult() {
+	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>(); 
+	   List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery
+			   ("from UsuarioPessoa order by nome")
+			   .setMaxResults(4)
+			   .getResultList();
+	   
+	   for (UsuarioPessoa usuarioPessoa : list) {
+		System.out.println(usuarioPessoa);
+	}
+	   
+   }
+   
+   
 }
 
 
