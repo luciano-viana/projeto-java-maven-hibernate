@@ -128,6 +128,22 @@ public class TesteHibernate {
 	   
    }
    
+   //-------------------------------------------------------------------------------------
+   // Método para consultar com parâmetros e queryes condicionais
+   @Test
+   public void testeQueryListParameter() {
+	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	   List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery
+			   ("from UsuarioPessoa where nome = : nome or sobrenome = : sobrenome order by nome")
+			   .setParameter("nome", "Luciano 3")
+			   .setParameter("sobrenome", "Vianadd")
+			   .getResultList();
+	   
+	   for (UsuarioPessoa usuarioPessoa : list) {
+		System.out.println(usuarioPessoa);
+	}
+	   
+   }
    
 }
 
