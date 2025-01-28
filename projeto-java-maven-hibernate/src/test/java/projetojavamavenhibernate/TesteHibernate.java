@@ -70,7 +70,7 @@ public class TesteHibernate {
 		System.out.println(pessoa);
 	}
 		
-	//-------------------------------------------------------------------------------------
+   //-------------------------------------------------------------------------------------
    //Método de Delete "Excluir"
    @Test
    public void testeDelete() {
@@ -99,7 +99,7 @@ public class TesteHibernate {
 	}
    
    //-------------------------------------------------------------------------------------
-   // Método para consultar com condições sem precisar criar métodos no DaoGeneric
+   //Método para consultar com condições sem precisar criar métodos no DaoGeneric
    @Test
    public void testeQueryList() {
 	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>(); 
@@ -144,6 +144,47 @@ public class TesteHibernate {
 	}
 	   
    }
+   
+  //-------------------------------------------------------------------------------------
+  // Método de consulta com operações matemáticas
+  @Test
+  public void testeQuerySoma() {
+	  DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	  
+	  Long somaIdade = (Long) daoGeneric.getEntityManager().
+			  createQuery("select sum(u.idade) from UsuarioPessoa u").getSingleResult();
+	  
+	  System.out.println("Soma de todas as idades é --> " + somaIdade);
+  }
+  
+  //-------------------------------------------------------------------------------------
+  // Método de consulta todos os dados utilizando NamedQuerey na classe UsuarioPessoa
+  @Test
+  public void testeNameQuery1() {
+	  DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	  List<UsuarioPessoa> list = daoGeneric.getEntityManager().
+			  createNamedQuery("UsuarioPessoa.todos").getResultList();
+	  
+	  for (UsuarioPessoa usuarioPessoa : list) {
+		System.out.println(usuarioPessoa);
+	}
+  }
+  
+  //-------------------------------------------------------------------------------------
+  // Método de consulta dos dados com filtro nome utilizando NamedQuerey na classe UsuarioPessoa
+  @Test
+  public void testeNameQuery2() {
+	  DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	  List<UsuarioPessoa> list = daoGeneric.getEntityManager().
+			  createNamedQuery("UsuarioPessoa.buscaPorNome")
+			  .setParameter("nome", "Luciano 5")
+			  .getResultList();
+	  
+	  for (UsuarioPessoa usuarioPessoa : list) {
+		System.out.println(usuarioPessoa);
+	}
+			  
+  }
    
 }
 

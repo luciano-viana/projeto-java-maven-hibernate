@@ -4,9 +4,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 
 @Entity //Para o Hibernate identificar essa classe precisa dessa anotação @Entity para gerar uma tabela no banco de dados de acordo com essa classe
+@NamedQueries({//Utilizado para centralizar as querys mais utilizadas e para serem chamadas em outras partes do sistema
+	
+	@NamedQuery(name = "UsuarioPessoa.todos", query = "select u from UsuarioPessoa u"),
+	@NamedQuery(name = "UsuarioPessoa.buscaPorNome", query = "select u from UsuarioPessoa u where u.nome = :nome")
+	
+})
 public class UsuarioPessoa {
 
 	@Id
