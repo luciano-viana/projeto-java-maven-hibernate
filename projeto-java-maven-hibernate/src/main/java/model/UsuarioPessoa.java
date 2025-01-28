@@ -3,6 +3,7 @@ package model;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class UsuarioPessoa {
 	private int idade;
 	
 	//mapeamento para carregar os telefones junto com os usuários
-	@OneToMany(mappedBy = "usuarioPessoa")//uma para muitos, um usuário tem muitos telefones
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)//uma para muitos, um usuário tem muitos telefones
 	private List<TelefoneUser> telefoneUsers;
 	
 	public void setTelefoneUsers(List<TelefoneUser> telefoneUsers) {
