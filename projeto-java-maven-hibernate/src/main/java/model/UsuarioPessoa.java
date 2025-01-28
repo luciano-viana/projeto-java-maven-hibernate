@@ -1,11 +1,14 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 
 @Entity //Para o Hibernate identificar essa classe precisa dessa anotação @Entity para gerar uma tabela no banco de dados de acordo com essa classe
@@ -27,6 +30,18 @@ public class UsuarioPessoa {
 	private String login;
 	private String senha;
 	private int idade;
+	
+	//mapeamento para carregar os telefones junto com os usuários
+	@OneToMany(mappedBy = "usuarioPessoa")//uma para muitos, um usuário tem muitos telefones
+	private List<TelefoneUser> telefoneUsers;
+	
+	public void setTelefoneUsers(List<TelefoneUser> telefoneUsers) {
+		this.telefoneUsers = telefoneUsers;
+	}
+	
+	public List<TelefoneUser> getTelefoneUsers() {
+		return telefoneUsers;
+	}
 	
 	public void setIdade(int idade) {
 		this.idade = idade;

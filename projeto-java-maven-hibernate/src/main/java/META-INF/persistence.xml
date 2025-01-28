@@ -8,6 +8,7 @@
 	<persistence-unit name="projeto-java-maven-hibernate">
 	
 	<class>model.UsuarioPessoa</class>
+	<class>model.TelefoneUser</class>
 	
 	<!-- Aqui é configurado toda a conexão com o banco,driver, declarar as classes -->
 		<properties>

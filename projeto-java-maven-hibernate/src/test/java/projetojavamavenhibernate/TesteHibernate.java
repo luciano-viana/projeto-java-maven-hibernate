@@ -175,6 +175,7 @@ public class TesteHibernate {
   @Test
   public void testeNameQuery2() {
 	  DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	  
 	  List<UsuarioPessoa> list = daoGeneric.getEntityManager().
 			  createNamedQuery("UsuarioPessoa.buscaPorNome")
 			  .setParameter("nome", "Luciano 5")
