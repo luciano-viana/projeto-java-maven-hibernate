@@ -88,24 +88,4 @@ public class DaoGeneric<E> {
 	return entityManager;
    }
    
-   
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 public class TelefoneUser {
 
 	@Id //Id obrigatório
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO) //Gerar IDs de forma automática
 	private Long id;
 
 	@Column(nullable = false) // Utilizado para informar que a coluna tipo é obrigatória no banco de dados

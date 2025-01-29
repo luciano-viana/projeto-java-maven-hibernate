@@ -28,7 +28,7 @@ public class HibernateUtil {
 		}
 	}
 	
-	//Retornar a o gerenciador de entidade para poder fazer as operações no banco de dados
+	//Retornar ao gerenciador de entidade para poder fazer as operações no banco de dados
 	public static EntityManager geEntityManager() {
 		return factory.createEntityManager();//Prove a parte de persistência
 	}
@@ -37,5 +37,4 @@ public class HibernateUtil {
 	public static Object getPrimaryKey(Object entity) { //Retorna a primary key
 		return factory.getPersistenceUnitUtil().getIdentifier(entity); //Retornar o identificador, a primary key "pela anotação @Id
 	}
-
 }

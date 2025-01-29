@@ -21,8 +21,8 @@ import javax.persistence.OneToMany;
 })
 public class UsuarioPessoa {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Id //Id obrigatório
+	@GeneratedValue(strategy = GenerationType.AUTO) //Gerar IDs de forma automática
 	private Long id;
 	
 	private String nome;
@@ -33,7 +33,7 @@ public class UsuarioPessoa {
 	private int idade;
 	
 	//mapeamento para carregar os telefones junto com os usuários
-	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)//uma para muitos, um usuário tem muitos telefones
+	@OneToMany(mappedBy = "usuarioPessoa", fetch = FetchType.EAGER)//um para muitos, um usuário tem muitos telefones
 	private List<TelefoneUser> telefoneUsers;
 	
 	public void setTelefoneUsers(List<TelefoneUser> telefoneUsers) {

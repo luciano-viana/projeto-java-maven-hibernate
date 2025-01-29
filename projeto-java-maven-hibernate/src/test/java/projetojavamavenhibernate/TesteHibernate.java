@@ -21,9 +21,9 @@ public class TesteHibernate {
 		
 		//Setar os objetos
 		pessoa.setIdade(34);
-		pessoa.setLogin("admteste");
+		pessoa.setLogin("admteste2");
 		pessoa.setSenha("123");
-		pessoa.setNome("Luciano 1");
+		pessoa.setNome("Luciano 3");
 		pessoa.setSobrenome("Viana");
 		pessoa.setEmail("lucianoviana12@gmail.com");
 		
@@ -61,10 +61,10 @@ public class TesteHibernate {
 	public void testeUpdate() {
 		DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 			
-		UsuarioPessoa pessoa = daoGeneric.pesquisar(1L, UsuarioPessoa.class);
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(17L, UsuarioPessoa.class);
 		
-		pessoa.setIdade(50);
-		pessoa.setNome("Nome atualizado Hibernete");
+		pessoa.setIdade(34);
+		pessoa.setNome("Luciano 2");
 		
 		pessoa = daoGeneric.updateMerge(pessoa);
 			
@@ -77,7 +77,7 @@ public class TesteHibernate {
    public void testeDelete() {
 	    DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
 			
-		UsuarioPessoa pessoa = daoGeneric.pesquisar(3L, UsuarioPessoa.class);
+		UsuarioPessoa pessoa = daoGeneric.pesquisar(11L, UsuarioPessoa.class);
 		
 		daoGeneric.deletarPorID(pessoa);
 			
@@ -104,6 +104,7 @@ public class TesteHibernate {
    @Test
    public void testeQueryList() {
 	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>(); 
+	   
 	   List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery
 			   ("from UsuarioPessoa where id = 20").getResultList();
 	   
@@ -118,6 +119,7 @@ public class TesteHibernate {
    @Test
    public void testeQueryListMaxResult() {
 	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>(); 
+	   
 	   List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery
 			   ("from UsuarioPessoa order by nome")
 			   .setMaxResults(4)
@@ -134,6 +136,7 @@ public class TesteHibernate {
    @Test
    public void testeQueryListParameter() {
 	   DaoGeneric<UsuarioPessoa> daoGeneric = new DaoGeneric<UsuarioPessoa>();
+	   
 	   List<UsuarioPessoa> list = daoGeneric.getEntityManager().createQuery
 			   ("from UsuarioPessoa where nome = : nome or sobrenome = : sobrenome order by nome")
 			   .setParameter("nome", "Luciano 3")
@@ -214,26 +217,16 @@ public class TesteHibernate {
 	  
 	  UsuarioPessoa pessoa = (UsuarioPessoa)daoGeneric.pesquisar(18L, UsuarioPessoa.class);
 	  
-	  
 	  for (TelefoneUser fone : pessoa.getTelefoneUsers()) {
-		System.out.println(fone.getNumero());
-		System.out.println(fone.getTipo());
-		System.out.println(fone.getUsuarioPessoa().getNome());
+		System.out.println("Nome:" + fone.getUsuarioPessoa().getNome());
+		System.out.println("Tipo:"+ fone.getTipo());
+		System.out.println("Número:"+ fone.getNumero());
 		System.out.println("----------------------------------");
 	}
-	  
 	  
   }
    
 }
-
-
-
-
-
-
-
-
 
 
 
